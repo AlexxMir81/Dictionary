@@ -7,12 +7,13 @@ public class myDictionary {
         }
         void add(String languageName, String word, String tranlation){
             Language newLang = new Language(languageName);
-            dictionaries.add(newLang);
             newLang.setWord(word, tranlation);
+            dictionaries.add(newLang);
         }
         void add(String languageName, String word, String[] tranlations){
             Language newLang = new Language(languageName);
             newLang.setWords(word, tranlations);
+            dictionaries.add(newLang);
         }
         void  printLang(){
             System.out.println("Доступные языки:");
@@ -22,19 +23,24 @@ public class myDictionary {
         }
         void printLangAll(){
             System.out.println("Доступные языки:");
-            for(Language locale: dictionaries){
-                System.out.println(locale.name);
-                locale.printLocale();
+            for(Language language: dictionaries){
+                System.out.println(language.name);
+                language.printLWords();
             }
         }
         void deleteLang(String lang){
-            for (Language dictionary: this.dictionaries){
-                if (dictionary.name.contains(lang)){
-                    dictionaries.remove(dictionary);
-                }
-            }
+            this.dictionaries.removeIf(language -> language.name.equals(lang));
         }
         void clear(){
             this.dictionaries.clear();
+        }
+        void search(String languageName, String searchword){
+            int counter=0;
+            for (Language language: dictionaries){
+                if(language.name == languageName){
+                    System.out.println("Найдено языков: "+ ++counter+".");
+                    language.search(searchword);
+                }
+            }
         }
 }

@@ -23,14 +23,9 @@ public class Language {
             trans.addAll(List.of(translations));
             this.words.put(word.toLowerCase(), trans);
         }
-        void printLocale(){
+        void printLWords(){
             for(Map.Entry<String, HashSet<String>> word: this.words.entrySet()){
                 printword(word.getKey());
-//            System.out.println("Слово: "+word.getKey());
-//            System.out.println("Перевод:");
-//            for (String transword: word.getValue()){
-//                System.out.println("\t"+transword);
-//            }
             }
         }
         void printword(String printedword){
@@ -58,15 +53,19 @@ public class Language {
             return  "Locale{word="+ words +'}';
         }
         public void search(String searchword){
+            int counter = 0;
             for(Map.Entry<String, HashSet<String>> word: this.words.entrySet()){
                 if(word.getKey().contains(searchword)){
+                    System.out.println("Найдено слов: "+ ++counter+".");
                     printword(word.getKey());
                 }
             }
         }
         public void specifictSsearch(String searchword){
+            int counter = 0;
             for(Map.Entry<String, HashSet<String>> word: this.words.entrySet()){
                 if(word.getKey().equalsIgnoreCase(searchword)){
+                    System.out.println("Найдено слов: "+ ++counter +".");
                     printword(searchword);
                 }
             }
